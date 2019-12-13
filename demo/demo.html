@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../dist/Vue.js"></script>
+</head>
+<body>
+  <div id="a">
+    <input v-model="message" />
+    <button v-on:click="increase">Increase</button>
+    <p v-text="message"></p>
+  </div>
+  <script>
+    const vm = new Vue({
+        data: {
+            prize: 5,
+            count: 2
+        },
+        computed: {
+            total () {
+                return this.prize * this.count
+            }
+        },
+        watch: {
+            count (newVal, oldVal) {
+                console.log('newCount:' + newVal, 'oldCount' + oldVal)
+            }
+        }
+        
+    })
+
+    console.log(vm)
+
+    setTimeout(() => {
+      console.log(vm.count)
+      vm.count = 3
+      console.log(vm.count)
+    })
+
+    setTimeout(() => {
+        vm.count = 4
+        console.log('total:' + vm.total)
+    }, 3000)
+
+    // setTimeout(() => {
+    //   console.log(vm)
+    //     vm.count = 10
+    //     console.log(vm.total)
+    // }, 5000)
+  </script>
+</body>
+</html>
